@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -13,9 +14,6 @@ public class TargetMover : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _targetMovePoints[_numberOfMovePoint].position, _targetSpeed * Time.deltaTime);
 
         if(transform.position == _targetMovePoints[_numberOfMovePoint].position)
-            _numberOfMovePoint++;
-
-        if (_numberOfMovePoint == _targetMovePoints.Count())
-            _numberOfMovePoint = 0;
+            _numberOfMovePoint = (_numberOfMovePoint + 1) % _targetMovePoints.Length;
     }
 }
